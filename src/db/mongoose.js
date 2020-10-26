@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/management-system-api", {
+
+//set proper enviornment
+var env = process.env.NODE_ENV || "development";
+
+//get enviornment settings from config
+var config = require("../../config/mongo")[env];
+
+//using production config
+var envUrl = process.env[config.use_env_variable];
+
+//not in production
+var localUrl = `mongodb://${config.host}/${config.database}`;
+
+//set mongo url
+var mongoUrl = envUrl? envUrl : localUrl;
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
