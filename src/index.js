@@ -8,7 +8,7 @@ const dptRouter = require("./router/department-router");
 
 const noticeRouter = require("./router/notice-router");
 const port = process.env.port || 5000;
-require("./db/mongoose");
+// require("./db/mongoose");
 require("dotenv").config();
 const cors = require("cors");
 
